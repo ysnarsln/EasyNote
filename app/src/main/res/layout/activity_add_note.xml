@@ -4,41 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    android:padding="12dp"
     android:orientation="vertical"
-
+    android:padding="12dp"
     tools:context="com.gelecegiyazankadinlar.easynote.AddNoteActivity">
 
     <EditText
         android:id="@+id/et_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Başlık"/>
+        android:hint="@string/hint_title"/>
 
     <EditText
         android:id="@+id/et_body"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:inputType="textMultiLine"
-        android:hint="Not"/>
+        android:hint="@string/hint_note"
+        android:inputType="textMultiLine"/>
 
     <EditText
         android:id="@+id/et_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Tarih"/>
+        android:hint="@string/hint_date"/>
 
     <EditText
         android:id="@+id/et_author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Yazar"/>
+        android:hint="@string/hint_author"/>
 
     <Button
         android:id="@+id/bt_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Kaydet"/>
+        android:text="@string/text_save"/>
 
 </LinearLayout>

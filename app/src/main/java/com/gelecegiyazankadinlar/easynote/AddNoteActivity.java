@@ -39,7 +39,7 @@ public class AddNoteActivity extends AppCompatActivity {
         itemKey = getIntent().getStringExtra("KEY");
 
 
-        if(itemKey == null){ // yeni not ekle
+        if (itemKey == null) { // yeni not ekle
 
 
         } else {    // not düzenleme
@@ -73,7 +73,7 @@ public class AddNoteActivity extends AppCompatActivity {
                 String noteDate = etDate.getText().toString();
                 String author = etAuthor.getText().toString();
 
-                if(itemKey == null){
+                if (itemKey == null) {
 
                     itemKey = mDatabaseReference.push().getKey();
 

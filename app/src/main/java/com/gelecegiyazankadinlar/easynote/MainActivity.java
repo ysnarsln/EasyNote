@@ -7,10 +7,14 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,13 +35,16 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseReference;
     private ChildEventListener mChildEventListener;
 
+    private FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        auth = FirebaseAuth.getInstance();
 
+        //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("notes");
 
         fabAddNote = (FloatingActionButton) findViewById(R.id.fab_add_note);
@@ -96,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
                 for (NoteModel item : noteModelList) {
 
-                    if(item.getKey().equals(noteModel.getKey())){
+                    if (item.getKey().equals(noteModel.getKey())) {
 
                         item.setTitle(noteModel.getTitle());
                         item.setBody(noteModel.getBody());
@@ -118,13 +125,13 @@ public class MainActivity extends AppCompatActivity {
 
                 for (NoteModel item : noteModelList) {
 
-                    if(item.getKey().equals(noteModel.getKey())){
+                    if (item.getKey().equals(noteModel.getKey())) {
                         tempModel = item;
                     }
 
                 }
 
-                if(tempModel != null){
+                if (tempModel != null) {
                     noteModelList.remove(tempModel);
                     noteAdapter.notifyDataSetChanged();
                 }
@@ -143,11 +150,40 @@ public class MainActivity extends AppCompatActivity {
         };
         mDatabaseReference.addChildEventListener(mChildEventListener);
 
-        new MyAsync().execute();
+        //new MyAsync().execute();
 
     }
 
-    class MyAsync extends AsyncTask{
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_logout:
+
+                auth.signOut();
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    // AsyncTask örneği
+    class MyAsync extends AsyncTask {
 
         AlertDialog mAlertDialog;
 
@@ -160,8 +196,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Object doInBackground(Object[] objects) {
 
-            for (int i = 0; i < 100000; i++){
-                Log.d("TAG", ""+i);
+            for (int i = 0; i < 100000; i++) {
+                Log.d("TAG", "" + i);
             }
 
             return null;

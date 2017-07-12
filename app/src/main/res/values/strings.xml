@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Harika Notlar</string>
+    <string name="app_exit">Çıkış</string>
+    <string name="hint_title">Başlık</string>
+    <string name="hint_note">Not</string>
+    <string name="hint_date">Tarih</string>
+    <string name="hint_author">Yazar</string>
+    <string name="text_save">Kaydet</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Parola</string>
+    <string name="text_remember_me">Beni Hatırla</string>
+    <string name="text_signin">Giriş Yap</string>
+    <string name="text_signup">Kaydol</string>
 </resources>
